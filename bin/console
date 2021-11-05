@@ -1,0 +1,15 @@
+#!/usr/bin/php
+<?php
+
+use App\Infrastructure\Console\App;
+use App\UI\CLI\Command\AddShippingAddressCommand;
+use App\UI\CLI\Command\ListClientsCommand;
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+$console = new App();
+$console->registerCommands([
+    AddShippingAddressCommand::class,
+    ListClientsCommand::class,
+]);
+$console->run($argv);

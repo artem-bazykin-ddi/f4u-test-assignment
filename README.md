@@ -16,3 +16,23 @@ Requirements:
 - Use plain PHP (no frameworks).
 
 Fork your own copy of eglobal-it/f4u-test-assignment and share the result with us.
+
+# Init project
+
+- composer install
+
+# Run command
+
+`./bin/console list_clients`
+
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+## [1.0.0] - 2021-11-05
+
+### Added
+
+- Structure of the project
+- CSV files
+- Command `list_clients`
