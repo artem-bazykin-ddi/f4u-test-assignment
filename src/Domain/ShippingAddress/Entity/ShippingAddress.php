@@ -2,10 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Client\ValueObject;
+namespace App\Domain\ShippingAddress\Entity;
 
 class ShippingAddress
 {
+    private string $id;
+
     private string $country;
 
     private string $city;
@@ -14,14 +16,16 @@ class ShippingAddress
 
     private string $street;
 
-    private bool $default = false;
+    private bool $default;
 
-    public function __construct(string $country, string $city, string $zipcode, string $street)
+    public function __construct(string $id, string $country, string $city, string $zipcode, string $street, bool $default = false)
     {
+        $this->id = $id;
         $this->country = $country;
         $this->city = $city;
         $this->zipcode = $zipcode;
         $this->street = $street;
+        $this->default = $default;
     }
 
     public function getCountry(): string
@@ -49,8 +53,13 @@ class ShippingAddress
         return $this->default;
     }
 
-    public function setDefault(): void
+    public function getId(): string
     {
-        $this->default = true;
+        return $this->id;
+    }
+
+    public function setDefault(bool $default): void
+    {
+        $this->default = $default;
     }
 }

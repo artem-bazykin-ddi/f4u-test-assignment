@@ -21,9 +21,15 @@ Fork your own copy of eglobal-it/f4u-test-assignment and share the result with u
 
 - composer install
 
-# Run command
+# Run commands
 
 `./bin/console list_clients`
+
+`./bin/console add {clientId} {country} {city} {zipcode} {street}`
+
+# Run tests
+
+`./vendor/bin/phpunit`
 
 # Changelog
 
@@ -36,3 +42,20 @@ All notable changes to this project will be documented in this file.
 - Structure of the project
 - CSV files
 - Command `list_clients`
+
+## [1.0.1] - 2021-11-08
+
+### Added
+
+- Command `add` for adding Shipping Address to the Client
+- Works with JSON instead of CSV
+- Added custom exceptions
+- PHPUnit test for adding Shipping Address to the Client
+
+### Removed
+
+- CSV files
+
+### Changed
+
+- Structure of the project

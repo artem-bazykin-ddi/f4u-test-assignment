@@ -11,7 +11,12 @@ class ListShippingAddressCommand implements CommandInterface
         return 'list_shipping_addresses';
     }
 
-    public function execute(): void
+    public function execute(array $data = []): void
     {
+    }
+
+    public function getParameters(): array
+    {
+        return ['clientId'];
     }
 }

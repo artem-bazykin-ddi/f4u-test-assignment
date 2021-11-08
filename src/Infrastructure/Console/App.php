@@ -26,7 +26,14 @@ class App
     {
         $signature = $argv[1] ?? null;
         $command = $this->getCommand($signature);
-        $command->execute();
+        $parameters = $command->getParameters();
+        $data = [];
+
+        if ($parameters) {
+            $data = $this->parseParameters(array_slice($argv, 2), $parameters);
+        }
+
+        $command->execute($data);
     }
 
     private function getCommand(?string $signature): CommandInterface
@@ -36,5 +43,15 @@ class App
         }
 
         return $this->registeredCommands[$signature];
+    }
+
+    private function parseParameters(array $argv, array $params): array
+    {
+        $data = [];
+        foreach ($params as $k => $v) {
+            $data[$v] = $argv[$k];
+        }
+
+        return $data;
     }
 }

@@ -6,5 +6,7 @@ interface CommandInterface
 {
     public function getSignature(): string;
 
-    public function execute(): void;
+    public function execute(array $data = []): void;
+
+    public function getParameters(): array;
 }

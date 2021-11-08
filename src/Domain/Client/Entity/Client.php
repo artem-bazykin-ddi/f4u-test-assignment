@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Client;
+namespace App\Domain\Client\Entity;
 
-use App\Domain\Client\ValueObject\ShippingAddress;
+use App\Domain\ShippingAddress\Entity\ShippingAddress;
 
 class Client
 {
@@ -24,15 +24,6 @@ class Client
         $this->lastname = $lastname;
     }
 
-    public function addAddresses(ShippingAddress $address): void
-    {
-        if (0 === count($this->addresses)) {
-            $address->setDefault();
-        }
-
-        $this->addresses[] = $address;
-    }
-
     public function getId(): string
     {
         return $this->id;
@@ -46,5 +37,18 @@ class Client
     public function getLastname(): string
     {
         return $this->lastname;
+    }
+
+    /**
+     * @return ShippingAddress[]
+     */
+    public function getAddresses(): array
+    {
+        return $this->addresses;
+    }
+
+    public function addAddress(ShippingAddress $address): void
+    {
+        $this->addresses[] = $address;
     }
 }
