@@ -51,4 +51,9 @@ class Client
     {
         $this->addresses[] = $address;
     }
+
+    public function setAdresses(array $addresses): void
+    {
+        $this->addresses = $addresses;
+    }
 }

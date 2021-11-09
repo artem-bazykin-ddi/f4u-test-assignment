@@ -16,8 +16,8 @@ class ListClientsCommand implements CommandInterface
 
     public function execute(array $data = []): void
     {
-        $repo = new ClientRepository(new JSONHandler());
-        $clients = $repo->getClients();
+        $clientRepository = new ClientRepository(new JSONHandler());
+        $clients = $clientRepository->getClients();
 
         print_r($clients);
     }

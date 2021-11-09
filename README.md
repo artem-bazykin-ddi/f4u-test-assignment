@@ -29,6 +29,10 @@ Fork your own copy of eglobal-it/f4u-test-assignment and share the result with u
 
 `./bin/console list_shipping_addresses {clientId}`
 
+`./bin/console delete {clientId} {addressId}`
+
+`./bin/console update {clientId} {addressId} {country} {city} {zipcode} {street}`
+
 # Run tests
 
 `./vendor/bin/phpunit`
@@ -72,3 +76,14 @@ All notable changes to this project will be documented in this file.
 
 - Refactor code
 - Fixed bugs
+
+## [1.0.3] - 2021-11-09
+
+### Added
+
+- Command `update` for updating Shipping Address of the Client
+- Command `delete` for deleting Shipping Address from the Client
+
+### Changed
+
+- Refactor code

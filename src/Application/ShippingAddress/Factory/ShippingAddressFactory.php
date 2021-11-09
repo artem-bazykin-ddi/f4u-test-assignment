@@ -13,6 +13,7 @@ class ShippingAddressFactory
         if ($readMode) {
             return (new ShippingAddress(...$address));
         }
+
         return (new ShippingAddress(self::generateRandomId(), ...$address));
     }
 

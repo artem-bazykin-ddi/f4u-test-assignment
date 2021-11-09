@@ -3,8 +3,10 @@
 
 use App\Infrastructure\Console\App;
 use App\UI\CLI\Command\AddShippingAddressCommand;
+use App\UI\CLI\Command\DeleteShippingAddressCommand;
 use App\UI\CLI\Command\ListClientsCommand;
 use App\UI\CLI\Command\ListShippingAddressCommand;
+use App\UI\CLI\Command\UpdateShippingAddressCommand;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -13,5 +15,7 @@ $console->registerCommands([
     AddShippingAddressCommand::class,
     ListClientsCommand::class,
     ListShippingAddressCommand::class,
+    DeleteShippingAddressCommand::class,
+    UpdateShippingAddressCommand::class,
 ]);
 $console->run($argv);
