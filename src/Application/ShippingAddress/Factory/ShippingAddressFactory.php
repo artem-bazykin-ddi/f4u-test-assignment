@@ -8,8 +8,11 @@ class ShippingAddressFactory
 {
     private const ID_LENGTH = 4;
 
-    public static function createShippingAddressFromArray(array $address): ShippingAddress
+    public static function createShippingAddressFromArray(array $address, bool $readMode): ShippingAddress
     {
+        if ($readMode) {
+            return (new ShippingAddress(...$address));
+        }
         return (new ShippingAddress(self::generateRandomId(), ...$address));
     }
 

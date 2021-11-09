@@ -39,7 +39,7 @@ class ClientServiceTest extends TestCase
     {
         $client = $this->createClient();
 
-        for ($i = 0; $i < 3; $i++) {
+        for ($i = 0; $i < ClientService::MAX_ADDRESSES; $i++) {
             $client->addAddress($this->createAddress());
         }
 

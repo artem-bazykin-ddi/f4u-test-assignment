@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Console;
 
+use App\Application\Client\Exception\InvalidParameters;
 use App\UI\CLI\Command\CommandInterface;
 
 class App
@@ -22,12 +23,20 @@ class App
         }
     }
 
+    /**
+     * @throws InvalidParameters
+     */
     public function run(array $argv): void
     {
         $signature = $argv[1] ?? null;
         $command = $this->getCommand($signature);
         $parameters = $command->getParameters();
+
         $data = [];
+
+        if (count($parameters) !== count(array_slice($argv, 2))) {
+            throw new InvalidParameters();
+        }
 
         if ($parameters) {
             $data = $this->parseParameters(array_slice($argv, 2), $parameters);

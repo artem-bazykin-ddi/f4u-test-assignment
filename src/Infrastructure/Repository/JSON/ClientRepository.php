@@ -16,8 +16,8 @@ class ClientRepository implements ClientRepositoryInterface
 
     public function __construct(JSONHandler $jsonHandler)
     {
-        $this->clients = $this->readClients();
         $this->jsonHandler = $jsonHandler;
+        $this->clients = $this->readClients();
     }
 
     /**
@@ -25,10 +25,10 @@ class ClientRepository implements ClientRepositoryInterface
      */
     public function getClientById(string $clientId): Client
     {
-        $clients = $this->jsonHandler->readAll();
-        foreach ($clients as $client) {
-            if ($client['id'] === $clientId) {
-                return $this->createClientFromArray($client);
+        /** @var Client $client */
+        foreach ($this->clients as $client) {
+            if ($client->getId() === $clientId) {
+                return $client;
             }
         }
 
@@ -52,13 +52,15 @@ class ClientRepository implements ClientRepositoryInterface
         $this->jsonHandler->write($data);
     }
 
-    private function createClientFromArray(array $client): Client
+    private function createClientFromArray(array $client, bool $readMode): Client
     {
         $clientEntity = new Client($client['id'], $client['firstname'], $client['lastname']);
         if (isset($client['addresses']) && $client['addresses']) {
             foreach ($client['addresses'] as $address) {
                 $clientEntity
-                    ->addAddress(ShippingAddressFactory::createShippingAddressFromArray(array_values($address)));
+                    ->addAddress(
+                        ShippingAddressFactory::createShippingAddressFromArray(array_values($address), $readMode)
+                    );
             }
         }
 
@@ -93,6 +95,6 @@ class ClientRepository implements ClientRepositoryInterface
 
     private function readClients(): array
     {
-        return array_map(fn($client) => $this->createClientFromArray($client), $this->jsonHandler->readAll());
+        return array_map(fn($client) => $this->createClientFromArray($client, true), $this->jsonHandler->readAll());
     }
 }

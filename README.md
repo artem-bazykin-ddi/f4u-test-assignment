@@ -27,6 +27,8 @@ Fork your own copy of eglobal-it/f4u-test-assignment and share the result with u
 
 `./bin/console add {clientId} {country} {city} {zipcode} {street}`
 
+`./bin/console list_shipping_addresses {clientId}`
+
 # Run tests
 
 `./vendor/bin/phpunit`
@@ -59,3 +61,14 @@ All notable changes to this project will be documented in this file.
 ### Changed
 
 - Structure of the project
+
+## [1.0.2] - 2021-11-09
+
+### Added
+
+- Command `list_shipping_addresses` for show Shipping Addresses of the Client
+
+### Changed
+
+- Refactor code
+- Fixed bugs

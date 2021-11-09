@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace App\UI\CLI\Command;
 
+use App\Application\Client\Exception\MaxAddressesLimitExceedException;
 use App\Application\Client\Service\ClientService;
 use App\Application\ShippingAddress\Factory\ShippingAddressFactory;
-use App\Infrastructure\Repository\JSON\ClientRepository;
 use App\Application\Client\Exception\ClientNotFoundException;
+use App\Infrastructure\Repository\JSON\ClientRepository;
 use App\Infrastructure\Service\JSONHandler;
 
 class AddShippingAddressCommand implements CommandInterface
@@ -17,6 +18,9 @@ class AddShippingAddressCommand implements CommandInterface
         return 'add';
     }
 
+    /**
+     * @throws MaxAddressesLimitExceedException
+     */
     public function execute(array $data = []): void
     {
         $clientRepository = new ClientRepository(new JSONHandler());
@@ -30,7 +34,7 @@ class AddShippingAddressCommand implements CommandInterface
         }
 
         $shippingData = array_values(array_slice($data, 1));
-        $shippingAddress = ShippingAddressFactory::createShippingAddressFromArray($shippingData);
+        $shippingAddress = ShippingAddressFactory::createShippingAddressFromArray($shippingData, false);
         $clientService->addAddressToClient($client, $shippingAddress);
     }
 

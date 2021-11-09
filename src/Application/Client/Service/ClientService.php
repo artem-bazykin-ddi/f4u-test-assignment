@@ -11,7 +11,7 @@ use App\Domain\ShippingAddress\Entity\ShippingAddress;
 
 class ClientService
 {
-    private const MAX_ADDRESSES = 3;
+    public const MAX_ADDRESSES = 3;
 
     private ClientRepositoryInterface $clientRepository;
 

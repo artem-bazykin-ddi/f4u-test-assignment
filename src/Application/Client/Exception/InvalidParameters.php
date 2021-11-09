@@ -1,0 +1,15 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Application\Client\Exception;
+
+use Exception;
+
+class InvalidParameters extends Exception
+{
+    public function __construct()
+    {
+        parent::__construct('Not enough parameters to run the command');
+    }
+}
